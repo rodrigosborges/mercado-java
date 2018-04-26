@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mercado;
 
 import java.net.URL;
@@ -12,11 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
-/**
- *
- * @author a1700782
- */
-public class FXMLDocumentController implements Initializable {
+public class ClienteController implements Initializable {
     
     @FXML private TextField nome;
     @FXML private TextField cpf;

@@ -27,21 +27,5 @@ public class Cliente {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-
-    public static void main(String[] args) {
-        Cliente cliente = new Cliente();
-        
-        cliente.setNome("Gabriel");
-        cliente.setCpf("1234");
-        
-        ClienteDAO dao = new ClienteDAO();
-        
-        boolean b = dao.inserir(cliente.getNome(), cliente.getCpf());
-        
-        if(b){
-            System.out.println("Inserido com sucesso!");
-        }
-    }
-    
+    }    
 }
