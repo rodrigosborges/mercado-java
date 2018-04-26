@@ -1,4 +1,4 @@
-package quiosque;
+package mercado;
 
 public class Cliente {
     private int id;

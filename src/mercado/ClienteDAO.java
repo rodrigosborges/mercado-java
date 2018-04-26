@@ -1,4 +1,4 @@
-package quiosque;
+package mercado;
 
 import conexao.Conexao;
 
