@@ -13,9 +13,9 @@ public class FornecedorDAO {
         conexao.configurar();
     }
     
-    public ResultSet selecionarFornecedores(int id){
+    public ResultSet all(){
         //criar SQL com variáveis
-        String sql = "select from fornecedores where id = '"+id+"';";
+        String sql = "select * from fornecedores;";
         
         //conectar com o BD
         conexao.conectar();

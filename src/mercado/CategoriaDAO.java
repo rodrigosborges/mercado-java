@@ -13,9 +13,9 @@ public class CategoriaDAO {
         conexao.configurar();
     }
     
-     public ResultSet selecionarCategoria(int id){
+     public ResultSet all(){
         //criar SQL com variáveis
-        String sql = "select from categorias where id = '"+id+"';";
+        String sql = "select * from categorias;";
         
         //conectar com o BD
         conexao.conectar();
