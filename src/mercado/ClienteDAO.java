@@ -1,6 +1,8 @@
 package mercado;
 
 import conexao.Conexao;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ClienteDAO {
     
@@ -11,9 +13,22 @@ public class ClienteDAO {
         conexao.configurar();
     }
     
-    public boolean inserir(String nome, String cpf){
+    public boolean inserir(Cliente cliente, Endereco endereco, Contato contato) throws SQLException{
+        
+        ContatoDAO daocontato = new ContatoDAO();
+        EnderecoDAO daoendereco = new EnderecoDAO();
+        
+        ResultSet rc = daocontato.inserir(contato);
+        ResultSet re = daoendereco.inserir(endereco);
+        rc.next();
+        re.next();
+        
+        int contato_id = rc.getInt("id");
+        int endereco_id = re.getInt("id");
+        
         //criar SQL com variáveis
-        String sql = "insert into cliente(nome, cpf) values('"+nome+"','"+cpf+"');";
+        String sql = "insert into clientes(nome, cpf, dt_nasc, endereco_id, contato_id) values('"+cliente.getNome()+"','"+
+                cliente.getCpf()+"','"+cliente.getNascimento()+"','"+endereco_id+"','"+contato_id+"');";
         
         //conectar com BD
         conexao.conectar();

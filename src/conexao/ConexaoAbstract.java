@@ -87,6 +87,19 @@ public abstract class ConexaoAbstract implements IConexao{
             return false;
         }
     }
+    
+    public ResultSet executarRetornarID(String sql) throws SQLException {
+        ResultSet rs = null;
+        try {
+            Statement stmt = con.createStatement();
+            stmt.execute(sql);
+            rs = stmt.executeQuery("SELECT LAST_INSERT_ID() AS id;");
+            return rs;
+        } catch (Exception e) {
+            out.println(e.getMessage());
+        }
+        return rs;
+    }    
 
     public ResultSet pegarResultadoSQL(String sql) {
         ResultSet rs = null;
