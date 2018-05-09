@@ -13,7 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ListView;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
 
@@ -23,8 +23,8 @@ public class ProdutoController implements Initializable {
     @FXML private TextField nome;
     @FXML private TextField marca;
     @FXML private TextField preco;
-    @FXML private ListView<String> categorias;
-    @FXML private ListView<String> fornecedores;
+    @FXML private ChoiceBox categorias;
+    @FXML private ChoiceBox fornecedores;
     
    
     private void handleButtonAction(ActionEvent event){
@@ -41,8 +41,11 @@ public class ProdutoController implements Initializable {
    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+//        categorias = new ChoiceBox(FXCollections.observableArrayList("First", "Second", "Third"));
         ObservableList<String> categoriaItems = categorias.getItems();
-        categoriaItems.add(0, "Selecione uma opção: ");
+        categoriaItems.add(0, "Selecione uma opção");
+        categorias.setValue("Selecione uma opção");
         CategoriaDAO c = new CategoriaDAO();
         ResultSet rc = c.all();
         try {
@@ -54,7 +57,8 @@ public class ProdutoController implements Initializable {
         }
         
         ObservableList<String> fornecedorItems = fornecedores.getItems();
-        fornecedorItems.add(0, "Selecione uma opção: ");
+        fornecedorItems.add(0, "Selecione uma opção");
+        fornecedores.setValue("Selecione uma opção");
         FornecedorDAO f = new FornecedorDAO();
         ResultSet rf = f.all();
         try {
