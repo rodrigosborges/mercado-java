@@ -26,6 +26,8 @@ public class EnderecoDAO {
         //enviar SQL para o BD
         ResultSet b = conexao.executarRetornarID(sql);
         
+        b.next();
+        
         //retornar mensagem de erro ou sucesso
         return b;
     }

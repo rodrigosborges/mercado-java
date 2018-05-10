@@ -20,7 +20,7 @@ public class Mercado extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         
-        Parent root = FXMLLoader.load(getClass().getResource("ProdutoView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ClienteView.fxml"));
         
         Scene scene = new Scene(root);
         

@@ -21,10 +21,11 @@ public class ClienteDAO {
         ResultSet rc = daocontato.inserir(contato);
         ResultSet re = daoendereco.inserir(endereco);
         rc.next();
-        re.next();
         
         int contato_id = rc.getInt("id");
         int endereco_id = re.getInt("id");
+        
+        System.out.println(endereco_id);
         
         //criar SQL com variáveis
         String sql = "insert into clientes(nome, cpf, dt_nasc, endereco_id, contato_id) values('"+cliente.getNome()+"','"+

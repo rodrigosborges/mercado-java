@@ -35,7 +35,11 @@ public class ClienteController implements Initializable {
         Contato contato = new Contato(fixo.getText(), celular.getText(), email.getText());
         ClienteDAO dao = new ClienteDAO();
         
-        boolean b = dao.inserir(cliente, endereco, contato);
+        if(dao.inserir(cliente, endereco, contato)){
+        
+        }else{
+            
+        }
     }   
 
     @Override

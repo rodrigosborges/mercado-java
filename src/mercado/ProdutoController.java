@@ -19,30 +19,26 @@ import javafx.scene.control.TextField;
 
 public class ProdutoController implements Initializable {
   
-    
     @FXML private TextField nome;
     @FXML private TextField marca;
     @FXML private TextField preco;
     @FXML private ChoiceBox categorias;
     @FXML private ChoiceBox fornecedores;
     
-   
     private void handleButtonAction(ActionEvent event){
        Produtos produto = new Produtos();
         
         produto.setNome(nome.getText());
         produto.setMarca(marca.getText());
         produto.setPreco(Double.parseDouble(preco.getText()));
-//        produto.setCategoria_id(Integer.parseInt(categorias.getText()));
-//        produto.setFornecedor_id(Integer.parseInt(fornecedor_id.getText()));
         ProdutoDAO dao = new ProdutoDAO();
    
         boolean b = dao.inserir(produto.getNome(), produto.getMarca(), 1, produto.getPreco(), 1);
    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-//        categorias = new ChoiceBox(FXCollections.observableArrayList("First", "Second", "Third"));
         ObservableList<String> categoriaItems = categorias.getItems();
         categoriaItems.add(0, "Selecione uma opção");
         categorias.setValue("Selecione uma opção");
