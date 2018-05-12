@@ -1,32 +1,30 @@
-package mercado;
+package DAO;
 
 import conexao.Conexao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import Model.Contato;
 
-public class EnderecoDAO {
+public class ContatoDAO {
     private Conexao conexao = new Conexao();
     
-    public EnderecoDAO(){
+    public ContatoDAO(){
         conexao = new Conexao();
         conexao.configurar();
     }
     
-    public ResultSet inserir(Endereco endereco) throws SQLException{
+    public ResultSet inserir(Contato contato) throws SQLException{
         
         
         //criar SQL com variáveis
-        String sql = "insert into enderecos(rua, numero, bairro, cidade, uf, cep) values('"+endereco.getRua()+"','"+
-                endereco.getNumero()+"','"+endereco.getBairro()+"','"+endereco.getCidade()+"','"+endereco.getUF()+"','"
-                +endereco.getCep()+"');";
+        String sql = "insert into contatos(fixo, celular, email) values('"+contato.getFixo()+"','"+
+                contato.getCelular()+"','"+contato.getEmail()+"');";
         
         //conectar com BD
         conexao.conectar();
         
         //enviar SQL para o BD
         ResultSet b = conexao.executarRetornarID(sql);
-        
-        b.next();
         
         //retornar mensagem de erro ou sucesso
         return b;

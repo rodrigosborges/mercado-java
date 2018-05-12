@@ -1,5 +1,5 @@
 
-package mercado;
+package DAO;
 
 import conexao.Conexao;
 import java.sql.ResultSet;

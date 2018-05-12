@@ -1,5 +1,9 @@
-package mercado;
+package Controller;
 
+import Model.Contato;
+import Model.Endereco;
+import Model.Cliente;
+import DAO.ClienteDAO;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;

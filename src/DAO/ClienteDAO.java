@@ -1,8 +1,11 @@
-package mercado;
+package DAO;
 
 import conexao.Conexao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import Model.Cliente;
+import Model.Contato;
+import Model.Endereco;
 
 public class ClienteDAO {
     

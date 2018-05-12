@@ -1,6 +1,10 @@
 
-package mercado;
+package Controller;
 
+import Model.Produtos;
+import DAO.ProdutoDAO;
+import DAO.FornecedorDAO;
+import DAO.CategoriaDAO;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;

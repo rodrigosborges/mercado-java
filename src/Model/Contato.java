@@ -1,4 +1,4 @@
-package mercado;
+package Model;
 
 public class Contato {
    
