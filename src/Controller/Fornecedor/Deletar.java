@@ -1,7 +1,8 @@
-package Controller.Cliente;
+package Controller.Fornecedor;
 
 import DAO.CategoriaDAO;
 import DAO.ClienteDAO;
+import DAO.FornecedorDAO;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -40,7 +41,7 @@ public class Deletar implements Initializable {
         Stage stage; 
         Parent root;
         stage=(Stage) ((Node)event.getSource()).getScene().getWindow();   
-        root = FXMLLoader.load(getClass().getResource("/View/Cliente/Index.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/View/Fornecedor/Index.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -48,28 +49,27 @@ public class Deletar implements Initializable {
         
     @FXML
     private void deletar(ActionEvent event) throws IOException {
-        ClienteDAO c = new ClienteDAO();
+        FornecedorDAO c = new FornecedorDAO();
         c.apagar(select.getSelectionModel().getSelectedIndex());        
         Stage stage; 
         Parent root;
         stage=(Stage) ((Node)event.getSource()).getScene().getWindow();   
-        root = FXMLLoader.load(getClass().getResource("/View/Cliente/Index.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/View/Fornecedor/Index.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> selectItems = select.getItems();
         selectItems.add(0, "Selecione um cliente");
         select.setValue("Selecione um cliente");
-        ClienteDAO c = new ClienteDAO();
+        FornecedorDAO c = new FornecedorDAO();
         ResultSet rc = c.all();
         try {
             while(rc.next()){
-                selectItems.add(rc.getInt("id"),rc.getString("nome")+" - "+rc.getString("cpf"));
+                selectItems.add(rc.getInt("id"),rc.getString("nome"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Controller.Cliente.Deletar.class.getName()).log(Level.SEVERE, null, ex);

@@ -29,4 +29,21 @@ public class ContatoDAO {
         //retornar mensagem de erro ou sucesso
         return b;
     }
+    
+    public ResultSet atualizar(int id,Contato contato) throws SQLException{
+        
+        
+        //criar SQL com variáveis
+        String sql = "update contatos set celular = '"+contato.getCelular()+"',email = '"+contato.getEmail()+"',fixo = '"+contato.getFixo()+
+                "' WHERE id = "+id+";";
+        
+        //conectar com BD
+        conexao.conectar();
+        
+        //enviar SQL para o BD
+        ResultSet b = conexao.executarRetornarID(sql);
+        
+        //retornar mensagem de erro ou sucesso
+        return b;
+    }
 }

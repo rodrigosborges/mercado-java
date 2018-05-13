@@ -42,7 +42,6 @@ public class ClienteDAO {
         int contato_id = rc.getInt("id");
         int endereco_id = re.getInt("id");
         
-        System.out.println(endereco_id);
         
         //criar SQL com variáveis
         String sql = "insert into clientes(nome, cpf, dt_nasc, endereco_id, contato_id) values('"+cliente.getNome()+"','"+
@@ -58,9 +57,17 @@ public class ClienteDAO {
         return b;
     }
     
-    public boolean atualizarNome(int id, String nome){
+    public boolean atualizar(int id, Cliente cliente, Endereco endereco, Contato contato) throws SQLException{
+        
+        ContatoDAO daocontato = new ContatoDAO();
+        EnderecoDAO daoendereco = new EnderecoDAO();
+        
+        ResultSet rc = daocontato.atualizar(cliente.getContato_id(),contato);
+        ResultSet re = daoendereco.atualizar(cliente.getEndereco_id(),endereco);
+        
         //criar SQL com variáveis
-        String sql = "update cliente set nome = '"+nome+"' where id = '"+id+"';";
+        String sql = "update clientes set nome = '"+cliente.getNome()+"',cpf = '"+cliente.getCpf()+"',dt_nasc = '"+cliente.getNascimento()+
+                "' WHERE id = "+id+";";
         
         //conectar com BD
         conexao.conectar();
@@ -72,18 +79,20 @@ public class ClienteDAO {
         return b;
     }
     
-    public boolean atualizarCpf(int id, String cpf){
+    public ResultSet get(int id){
         //criar SQL com variáveis
-        String sql = "update cliente set cpf = '"+cpf+"' where id = '"+id+"';";
+        String sql = "SELECT clientes.cpf, clientes.nome, clientes.dt_nasc,clientes.contato_id, clientes.endereco_id, contatos.fixo, contatos.celular, contatos.email, enderecos.rua, "
+                + "enderecos.bairro, enderecos.numero, enderecos.cep, enderecos.cidade, enderecos.uf FROM mercado.clientes "
+                + "JOIN contatos ON clientes.contato_id = contatos.id JOIN enderecos ON clientes.endereco_id = enderecos.id WHERE clientes.id ="+id+";";
         
-        //conectar com BD
+        //conectar com o BD
         conexao.conectar();
         
         //enviar SQL para o BD
-        boolean b = conexao.executarComandosSQL(sql);
+        ResultSet b = conexao.pegarResultadoSQL(sql);
         
         //retornar mensagem de erro ou sucesso
-        return b;
+        return b;        
     }
     
     public boolean apagar(int id){
