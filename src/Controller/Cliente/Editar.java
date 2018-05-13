@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Index;
+package Controller.Cliente;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,7 +18,7 @@ import javafx.stage.Stage;
  *
  * @author RODRIGO
  */
-public class IndexController implements Initializable {
+public class Editar implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -39,12 +34,23 @@ public class IndexController implements Initializable {
         Parent root;
         stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
         if(event.getSource() == btn1){      
-            root = FXMLLoader.load(getClass().getResource("/View/Cliente/Index.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/View/Cliente/Cadastro.fxml"));
         }else if(event.getSource() == btn2){
-            root = FXMLLoader.load(getClass().getResource("/View/Produto/Index.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/View/Cliente/Editar.fxml"));
         }else{            
-            root = FXMLLoader.load(getClass().getResource("/View/Fornecedor/Index.fxml"));            
+            root = FXMLLoader.load(getClass().getResource("/View/Cliente/Deletar.fxml"));            
         }
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    private void voltar(ActionEvent event) throws IOException {
+        Stage stage; 
+        Parent root;
+        stage=(Stage) ((Node)event.getSource()).getScene().getWindow();   
+        root = FXMLLoader.load(getClass().getResource("/Index/Index.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Controller.Fornecedor;
 
 import DAO.ClienteDAO;
 import Model.Cliente;
@@ -21,7 +21,7 @@ import javafx.fxml.Initializable;
  *
  * @author RODRIGO
  */
-public class FornecedorController implements Initializable {
+public class Cadastro implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException{
 

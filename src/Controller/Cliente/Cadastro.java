@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Cliente;
 
 import Model.Contato;
 import Model.Endereco;
@@ -18,7 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class ClienteController implements Initializable {
+public class Cadastro implements Initializable {
     
     //dados pessoais
     @FXML private TextField nome;
@@ -39,14 +39,20 @@ public class ClienteController implements Initializable {
     @FXML private TextField email;
     
     @FXML
-    private void handleButtonAction(ActionEvent event) throws SQLException{
+    private void handleButtonAction(ActionEvent event) throws SQLException, IOException{
         Cliente cliente = new Cliente(nome.getText(), cpf.getText(), nascimento.getText());
         Endereco endereco = new Endereco(rua.getText(), Integer.parseInt(numero.getText()), bairro.getText(), cidade.getText(), UF.getText(), cep.getText());
         Contato contato = new Contato(fixo.getText(), celular.getText(), email.getText());
         ClienteDAO dao = new ClienteDAO();
         
         if(dao.inserir(cliente, endereco, contato)){
-        
+            Stage stage; 
+            Parent root;
+            stage=(Stage) ((Node)event.getSource()).getScene().getWindow();   
+            root = FXMLLoader.load(getClass().getResource("/View/Cliente/Index.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();       
         }else{
             
         }
@@ -57,7 +63,7 @@ public class ClienteController implements Initializable {
         Stage stage; 
         Parent root;
         stage=(Stage) ((Node)event.getSource()).getScene().getWindow();   
-        root = FXMLLoader.load(getClass().getResource("/Index/Index.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/View/Cliente/Index.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

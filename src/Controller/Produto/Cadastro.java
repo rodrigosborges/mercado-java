@@ -1,10 +1,11 @@
 
-package Controller;
+package Controller.Produto;
 
 import Model.Produtos;
 import DAO.ProdutoDAO;
 import DAO.FornecedorDAO;
 import DAO.CategoriaDAO;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,12 +17,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
-public class ProdutoController implements Initializable {
+public class Cadastro implements Initializable {
   
     @FXML private TextField nome;
     @FXML private TextField marca;
@@ -40,6 +46,17 @@ public class ProdutoController implements Initializable {
         boolean b = dao.inserir(produto.getNome(), produto.getMarca(), 1, produto.getPreco(), 1);
    }
     
+    @FXML
+    private void voltar(ActionEvent event) throws IOException {
+        Stage stage; 
+        Parent root;
+        stage=(Stage) ((Node)event.getSource()).getScene().getWindow();   
+        root = FXMLLoader.load(getClass().getResource("/View/Produto/Index.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -53,7 +70,7 @@ public class ProdutoController implements Initializable {
                 categoriaItems.add(rc.getString("nome"));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         ObservableList<String> fornecedorItems = fornecedores.getItems();
@@ -66,7 +83,7 @@ public class ProdutoController implements Initializable {
                 fornecedorItems.add(rf.getString("nome"));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
     

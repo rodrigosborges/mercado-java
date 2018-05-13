@@ -99,6 +99,20 @@ public class ProdutoDAO {
         return b;
     }
     
+    public ResultSet all(){
+        //criar SQL com variáveis
+        String sql = "select * from produtos;";
+        
+        //conectar com o BD
+        conexao.conectar();
+        
+        //enviar SQL para o BD
+        ResultSet b = conexao.pegarResultadoSQL(sql);
+        
+        //retornar mensagem de erro ou sucesso
+        return b;
+    }
+    
    
     
     

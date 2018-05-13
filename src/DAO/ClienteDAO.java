@@ -16,6 +16,20 @@ public class ClienteDAO {
         conexao.configurar();
     }
     
+    public ResultSet all(){
+        //criar SQL com variáveis
+        String sql = "select * from clientes;";
+        
+        //conectar com o BD
+        conexao.conectar();
+        
+        //enviar SQL para o BD
+        ResultSet b = conexao.pegarResultadoSQL(sql);
+        
+        //retornar mensagem de erro ou sucesso
+        return b;
+    }
+    
     public boolean inserir(Cliente cliente, Endereco endereco, Contato contato) throws SQLException{
         
         ContatoDAO daocontato = new ContatoDAO();
@@ -74,7 +88,7 @@ public class ClienteDAO {
     
     public boolean apagar(int id){
         //criar SQL com variáveis
-        String sql = "delete from cliente where id = '"+id+"';";
+        String sql = "delete from clientes where id = '"+id+"';";
         
         //conectar com BD
         conexao.conectar();

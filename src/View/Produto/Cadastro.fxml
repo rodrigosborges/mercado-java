@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProdutoController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Produto.Cadastro">
    <children>
       <ScrollPane layoutX="74.0" layoutY="57.0" prefHeight="508.0" prefWidth="600.0" AnchorPane.bottomAnchor="-108.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <content>
@@ -52,6 +52,7 @@
                   <Button layoutX="493.0" layoutY="450.0" mnemonicParsing="false" text="Cadastrar" />
                   <ChoiceBox fx:id="categorias" layoutX="45.0" layoutY="331.0" prefHeight="25.0" prefWidth="498.0" />
                   <ChoiceBox fx:id="fornecedores" layoutX="41.0" layoutY="404.0" prefHeight="25.0" prefWidth="502.0" />
+                  <Button layoutX="41.0" layoutY="34.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
                </children>
             </AnchorPane>
         </content>
