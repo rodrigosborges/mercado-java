@@ -55,10 +55,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="rua" layoutX="46.0" layoutY="395.0" prefHeight="25.0" prefWidth="353.0">
-                     <effect>
-                        <Bloom />
-                     </effect></TextField>
+                  <TextField fx:id="rua" layoutX="46.0" layoutY="395.0" prefHeight="25.0" prefWidth="353.0"></TextField>
                   <Label layoutX="425.0" layoutY="374.0" text="Número">
                      <font>
                         <Font size="15.0" />
