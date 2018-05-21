@@ -41,7 +41,7 @@ public class Deletar implements Initializable {
         Stage stage; 
         Parent root;
         stage=(Stage) ((Node)event.getSource()).getScene().getWindow();   
-        root = FXMLLoader.load(getClass().getResource("/View/Cliente/Index.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/View/Produto/Index.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

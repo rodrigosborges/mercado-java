@@ -1,8 +1,12 @@
 
 package DAO;
 
+
 import conexao.Conexao;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import Model.Produtos;
+
 
 public class ProdutoDAO {
     
@@ -13,9 +17,24 @@ public class ProdutoDAO {
         conexao.configurar();
     }
     
-    public boolean inserir(String nome, String marca, int categoria_id, double preco, int fornecedor_id){
+    public ResultSet all(){
         //criar SQL com variáveis
-        String sql = "insert into produtos(nome, marca, categoria, preco) values('"+nome+"','"+marca+"', '"+categoria_id+"','"+preco+"','"+fornecedor_id+"');";
+        String sql = "select * from produtos;";
+        
+        //conectar com o BD
+        conexao.conectar();
+        
+        //enviar SQL para o BD
+        ResultSet b = conexao.pegarResultadoSQL(sql);
+        
+        //restornar mensagem de erro ou sucesso
+        return b;
+    }
+    
+    public boolean inserir(Produtos produtos) throws SQLException{
+        
+        //criar SQL com variáveis
+        String sql = "insert into produtos(nome, marca, validade, preco) values('"+produtos.getNome()+"','"+produtos.getMarca()+"','"+produtos.getValidade()+"','"+produtos.getPreco()+"');";
         
         //conectar com BD
         conexao.conectar();
@@ -27,9 +46,10 @@ public class ProdutoDAO {
         return b;
     }
     
-    public boolean atualizarNome(int id, String nome){
+    public boolean atualizar(int id, Produtos produtos) throws SQLException{
+
         //criar SQL com variáveis
-        String sql = "update produtos set nome = '"+nome+"' where id = '"+id+"';";
+        String sql = "update produtos set nome = '"+produtos.getNome()+"', marca ='"+produtos.getMarca()+"'validade='"+produtos.getValidade()+"'preco='"+produtos.getPreco()+"' WHERE id = '"+id+"';";
         
         //conectar com BD
         conexao.conectar();
@@ -41,49 +61,7 @@ public class ProdutoDAO {
         return b;
     }
     
-    public boolean atualizarMarca(int id, String marca){
-        //criar SQL com variáveis
-        String sql = "update produtos set marca = '"+marca+"' where id = '"+id+"';";
-        
-        //conectar com BD
-        conexao.conectar();
-        
-        //enviar SQL para o BD
-        boolean b = conexao.executarComandosSQL(sql);
-        
-        //retornar mensagem de erro ou sucesso
-        return b;
-    }
     
-    public boolean atualizarCategoria(int id, int categoria_id){
-        //criar SQL com variáveis
-        String sql = "update produtos set categoria_id'"+categoria_id+"'where id = '"+id+"';";
-        
-        //Conectar com BD
-        conexao.conectar();
-        
-        //enviar SQL para o BD
-        boolean b = conexao.executarComandosSQL(sql);
-        
-        //retornar mensagem de erro ou sucesso
-        return b;
-        
-    }
-    
-    public boolean atualizarPreco(int id, double preco){
-     //criar SQL com variáveis
-     String sql = "update produtos set preco'"+preco+"' where id = '"+id+"';";
-     
-     //Conectar com o BD
-     conexao.conectar();
-     
-     //enviar SQL para o BD
-     boolean b = conexao.executarComandosSQL(sql);
-     
-     //retornar mensagem de erro ou sucesso
-     return b;
-        
-    }
     
     public boolean apagar(int id){
         //criar SQL com variáveis
@@ -99,9 +77,9 @@ public class ProdutoDAO {
         return b;
     }
     
-    public ResultSet all(){
+    public ResultSet get(int id){
         //criar SQL com variáveis
-        String sql = "select * from produtos;";
+        String sql = "SELECT produtos.nome, produtos.marca, produtos.validade, produtos.preco FROM mercado.produtos WHERE produtos.id ="+id+";";
         
         //conectar com o BD
         conexao.conectar();
@@ -110,13 +88,8 @@ public class ProdutoDAO {
         ResultSet b = conexao.pegarResultadoSQL(sql);
         
         //retornar mensagem de erro ou sucesso
-        return b;
+        return b;        
     }
-    
-   
-    
-    
-    
 }
 
 

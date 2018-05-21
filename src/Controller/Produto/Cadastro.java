@@ -31,19 +31,29 @@ public class Cadastro implements Initializable {
   
     @FXML private TextField nome;
     @FXML private TextField marca;
+    @FXML private TextField validade;
     @FXML private TextField preco;
-    @FXML private ChoiceBox categorias;
-    @FXML private ChoiceBox fornecedores;
+
     
-    private void handleButtonAction(ActionEvent event){
-       Produtos produto = new Produtos();
+    @FXML
+    private void handleButtonAction(ActionEvent event) throws SQLException, IOException{
         
-        produto.setNome(nome.getText());
-        produto.setMarca(marca.getText());
-        produto.setPreco(Double.parseDouble(preco.getText()));
+        Produtos produto = new Produtos(nome.getText(), marca.getText(), validade.getText(), preco.getText());
+        
         ProdutoDAO dao = new ProdutoDAO();
-   
-        boolean b = dao.inserir(produto.getNome(), produto.getMarca(), 1, produto.getPreco(), 1);
+        
+        if(dao.inserir(produto)){
+            Stage stage; 
+            Parent root;
+            stage=(Stage) ((Node)event.getSource()).getScene().getWindow();   
+            root = FXMLLoader.load(getClass().getResource("/View/Produto/Index.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();       
+        }else{
+            
+        }
+        
    }
     
     @FXML
@@ -59,32 +69,32 @@ public class Cadastro implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        ObservableList<String> categoriaItems = categorias.getItems();
-        categoriaItems.add(0, "Selecione uma opção");
-        categorias.setValue("Selecione uma opção");
-        CategoriaDAO c = new CategoriaDAO();
-        ResultSet rc = c.all();
-        try {
-            while(rc.next()){
-                categoriaItems.add(rc.getString("nome"));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        ObservableList<String> fornecedorItems = fornecedores.getItems();
-        fornecedorItems.add(0, "Selecione uma opção");
-        fornecedores.setValue("Selecione uma opção");
-        FornecedorDAO f = new FornecedorDAO();
-        ResultSet rf = f.all();
-        try {
-            while(rf.next()){
-                fornecedorItems.add(rf.getString("nome"));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        
+//        ObservableList<String> categoriaItems = categorias.getItems();
+//        categoriaItems.add(0, "Selecione uma opção");
+//        categorias.setValue("Selecione uma opção");
+//        CategoriaDAO c = new CategoriaDAO();
+//        ResultSet rc = c.all();
+//        try {
+//            while(rc.next()){
+//                categoriaItems.add(rc.getString("nome"));
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        ObservableList<String> fornecedorItems = fornecedores.getItems();
+//        fornecedorItems.add(0, "Selecione uma opção");
+//        fornecedores.setValue("Selecione uma opção");
+//        FornecedorDAO f = new FornecedorDAO();
+//        ResultSet rf = f.all();
+//        try {
+//            while(rf.next()){
+//                fornecedorItems.add(rf.getString("nome"));
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }    
     
 }

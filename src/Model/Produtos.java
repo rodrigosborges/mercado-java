@@ -3,13 +3,28 @@ package Model;
 
 public class Produtos {
     
+    private int id;
     private String nome;
     private String marca;
-    private int categoria_id;
-    private double preco;
-    private int estoque_id;
-    private int fornecedor_id;
+    private String validade;
+    private String preco;
+    
+    
+    public Produtos(String nome, String marca, String validade,String preco){
+        this.nome = nome;
+        this.marca = marca;
+        this.preco = preco;
+        this.validade = validade;
+    }
+    
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -26,36 +41,20 @@ public class Produtos {
         this.marca = marca;
     }
 
-    public int getCategoria_id() {
-        return categoria_id;
+    public String getValidade() {
+        return validade;
     }
 
-    public void setCategoria_id(int categoria_id) {
-        this.categoria_id = categoria_id;
+    public void setValidade(String validade) {
+        this.validade = validade;
     }
 
-    public double getPreco() {
+    public String getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(String preco) {
         this.preco = preco;
-    }
-
-    public int getEstoque_id() {
-        return estoque_id;
-    }
-
-    public void setEstoque_id(int estoque_id) {
-        this.estoque_id = estoque_id;
-    }
-
-    public int getFornecedor_id() {
-        return fornecedor_id;
-    }
-
-    public void setFornecedor_id(int fornecedor_id) {
-        this.fornecedor_id = fornecedor_id;
     }
     
 }

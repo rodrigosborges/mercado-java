@@ -30,7 +30,7 @@ public class FornecedorDAO {
         return b;
     }
     
-    public boolean atualizar(Fornecedor fornecedor, int id) throws SQLException{
+    public ResultSet atualizar(Fornecedor fornecedor, int id) throws SQLException{
         
         //criar SQL com variáveis
         String sql = "update fornecedores set nome= '"+fornecedor.getNome()+"' where id = "+id+";";
@@ -39,7 +39,7 @@ public class FornecedorDAO {
         conexao.conectar();
         
         //enviar SQL para o BD
-        boolean b = conexao.executarComandosSQL(sql);
+        ResultSet b = conexao.executarRetornarID(sql);
         
         //retornar mensagem de erro ou sucesso
         return b;
