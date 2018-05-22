@@ -39,7 +39,7 @@ public class Cadastro implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException, IOException{
         
-        Produtos produto = new Produtos(nome.getText(), marca.getText(), preco.getText(), fornecedores.getSelectionModel().getSelectedIndex(), categorias.getSelectionModel().getSelectedIndex());
+        Produtos produto = new Produtos(nome.getText(), marca.getText(), preco.getText(), Integer.parseInt(fornecedores.getSelectionModel().getSelectedItem().toString().split("-")[0]), Integer.parseInt(categorias.getSelectionModel().getSelectedItem().toString().split("-")[0]));
         
         ProdutoDAO dao = new ProdutoDAO();
         
@@ -78,7 +78,7 @@ public class Cadastro implements Initializable {
         ResultSet rc = c.all();
         try {
             while(rc.next()){
-                categoriaItems.add(rc.getString("nome"));
+                categoriaItems.add(rc.getInt("id")+"- "+rc.getString("nome"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
@@ -91,7 +91,7 @@ public class Cadastro implements Initializable {
         ResultSet rf = f.all();
         try {
             while(rf.next()){
-                fornecedorItems.add(rf.getString("nome"));
+                fornecedorItems.add(rf.getInt("id")+"- "+rf.getString("nome"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);

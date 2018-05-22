@@ -52,7 +52,7 @@ public class Listar implements Initializable {
     private void editar(ActionEvent event) throws IOException, SQLException {
         if(select.getSelectionModel().getSelectedIndex() > 0){
             ProdutoDAO c = new ProdutoDAO();
-            ResultSet rc = c.get(select.getSelectionModel().getSelectedIndex());
+            ResultSet rc = c.get(Integer.parseInt(select.getSelectionModel().getSelectedItem().toString().split("-")[0]));
             rc.next();
             nome.setText(rc.getString("nome"));
             marca.setText(rc.getString("marca"));
@@ -75,7 +75,7 @@ public class Listar implements Initializable {
         ResultSet pc = p.all();
         try {
             while(pc.next()){
-                selectItems.add(pc.getInt("id"),pc.getString("nome"));
+                selectItems.add(pc.getInt("id")+"- "+pc.getString("nome"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Controller.Produto.Editar.class.getName()).log(Level.SEVERE, null, ex);

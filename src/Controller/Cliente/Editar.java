@@ -76,7 +76,7 @@ public class Editar implements Initializable {
     private void editar(ActionEvent event) throws IOException, SQLException {
         if(select.getSelectionModel().getSelectedIndex() > 0){
             ClienteDAO c = new ClienteDAO();
-            ResultSet rc = c.get(select.getSelectionModel().getSelectedIndex());
+            ResultSet rc = c.get(Integer.parseInt(select.getSelectionModel().getSelectedItem().toString().split("-")[0]));
             rc.next();
             this.contato_id = rc.getInt("contato_id");
             this.endereco_id = rc.getInt("endereco_id");
@@ -130,7 +130,7 @@ public class Editar implements Initializable {
         ResultSet rc = c.all();
         try {
             while(rc.next()){
-                selectItems.add(rc.getInt("id"),rc.getString("nome")+" - "+rc.getString("cpf"));
+                selectItems.add(rc.getInt("id")+"- "+rc.getString("nome"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Controller.Cliente.Editar.class.getName()).log(Level.SEVERE, null, ex);

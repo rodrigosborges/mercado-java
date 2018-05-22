@@ -27,6 +27,7 @@ public class Index implements Initializable {
     @FXML private Button btn1;
     @FXML private Button btn2;
     @FXML private Button btn3;
+    @FXML private Button btn4;
     
     @FXML
     private void clientes(ActionEvent event) throws IOException {
@@ -37,8 +38,10 @@ public class Index implements Initializable {
             root = FXMLLoader.load(getClass().getResource("/View/Cliente/Cadastro.fxml"));
         }else if(event.getSource() == btn2){
             root = FXMLLoader.load(getClass().getResource("/View/Cliente/Editar.fxml"));
-        }else{            
+        }else if(event.getSource() == btn3){            
             root = FXMLLoader.load(getClass().getResource("/View/Cliente/Deletar.fxml"));            
+        }else{
+            root = FXMLLoader.load(getClass().getResource("/View/Cliente/Listar.fxml"));  
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);

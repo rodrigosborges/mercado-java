@@ -49,7 +49,7 @@ public class Deletar implements Initializable {
     @FXML
     private void deletar(ActionEvent event) throws IOException {
         ClienteDAO c = new ClienteDAO();
-        c.apagar(select.getSelectionModel().getSelectedIndex());        
+        c.apagar(Integer.parseInt(select.getSelectionModel().getSelectedItem().toString().split("-")[0]));        
         Stage stage; 
         Parent root;
         stage=(Stage) ((Node)event.getSource()).getScene().getWindow();   
@@ -69,7 +69,7 @@ public class Deletar implements Initializable {
         ResultSet rc = c.all();
         try {
             while(rc.next()){
-                selectItems.add(rc.getInt("id"),rc.getString("nome")+" - "+rc.getString("cpf"));
+                selectItems.add(rc.getInt("id")+"- "+rc.getString("nome"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Controller.Cliente.Deletar.class.getName()).log(Level.SEVERE, null, ex);

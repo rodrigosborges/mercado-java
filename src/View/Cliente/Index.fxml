@@ -7,17 +7,17 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Cliente.Index">
    <children>
-      <Button fx:id="btn1" layoutX="151.0" layoutY="192.0" mnemonicParsing="false" onAction="#clientes" prefHeight="46.0" prefWidth="339.0" text="Cadastrar" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="150.0">
+      <Button fx:id="btn1" layoutX="151.0" layoutY="189.0" mnemonicParsing="false" onAction="#clientes" prefHeight="46.0" prefWidth="339.0" text="Cadastrar" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="150.0">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="btn2" layoutX="151.0" layoutY="300.0" mnemonicParsing="false" onAction="#clientes" prefHeight="46.0" prefWidth="339.0" text="Editar">
+      <Button fx:id="btn2" layoutX="151.0" layoutY="354.0" mnemonicParsing="false" onAction="#clientes" prefHeight="46.0" prefWidth="339.0" text="Editar">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="btn3" layoutX="151.0" layoutY="406.0" mnemonicParsing="false" onAction="#clientes" prefHeight="46.0" prefWidth="339.0" text="Deletar">
+      <Button fx:id="btn3" layoutX="151.0" layoutY="439.0" mnemonicParsing="false" onAction="#clientes" prefHeight="46.0" prefWidth="339.0" text="Deletar">
          <font>
             <Font size="17.0" />
          </font>
@@ -28,5 +28,10 @@
          </font>
       </Label>
       <Button layoutX="48.0" layoutY="38.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+      <Button fx:id="btn4" layoutX="151.0" layoutY="271.0" mnemonicParsing="false" onAction="#clientes" prefHeight="46.0" prefWidth="339.0" text="Listar">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

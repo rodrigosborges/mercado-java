@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Produto.Listar">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Cliente.Listar">
    <children>
-      <AnchorPane layoutY="3.0" prefHeight="178.0" prefWidth="640.0">
+      <AnchorPane prefHeight="178.0" prefWidth="640.0">
          <children>
             <ChoiceBox fx:id="select" layoutX="112.0" layoutY="119.0" onAction="#editar" prefHeight="36.0" prefWidth="403.0" />
             <Label layoutX="281.0" layoutY="48.0" text="LISTAR">
@@ -19,54 +19,64 @@
             <Button layoutX="42.0" layoutY="38.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="container" layoutY="181.0" minHeight="0.0" minWidth="0.0" prefHeight="405.0" prefWidth="640.0">
+      <AnchorPane fx:id="container" layoutY="178.0" minHeight="0.0" minWidth="0.0" prefHeight="419.0" prefWidth="640.0">
          <children>
-            <Label layoutX="64.0" layoutY="38.0" text="Nome">
+            <Label layoutX="38.0" layoutY="38.0" text="Nome">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="64.0" layoutY="103.0" text="Marca">
+            <Label layoutX="38.0" layoutY="116.0" text="CPF">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="65.0" layoutY="171.0" text="Preço">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="65.0" layoutY="233.0" text="Categoria">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="65.0" layoutY="309.0" text="Fornecedor">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="nome" layoutX="65.0" layoutY="64.0" prefHeight="30.0" prefWidth="481.0">
+            <Label fx:id="nome" layoutX="39.0" layoutY="58.0" prefHeight="30.0" prefWidth="583.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="marca" layoutX="65.0" layoutY="131.0" prefHeight="30.0" prefWidth="481.0">
+            <Label fx:id="cpf" layoutX="35.0" layoutY="136.0" prefHeight="30.0" prefWidth="277.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="preco" layoutX="65.0" layoutY="191.0" prefHeight="30.0" prefWidth="481.0">
+            <Label layoutX="342.0" layoutY="116.0" text="Data de nascimento">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="dt_nasc" layoutX="340.0" layoutY="136.0" prefHeight="30.0" prefWidth="285.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="categoria" layoutX="65.0" layoutY="261.0" prefHeight="30.0" prefWidth="481.0">
+            <Label layoutX="37.0" layoutY="216.0" text="E-mail">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="349.0" layoutY="216.0" text="Telefones">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="email" layoutX="36.0" layoutY="236.0" prefHeight="30.0" prefWidth="285.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="fornecedor" layoutX="65.0" layoutY="329.0" prefHeight="30.0" prefWidth="481.0">
+            <Label fx:id="telefone" layoutX="349.0" layoutY="236.0" prefHeight="30.0" prefWidth="277.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="38.0" layoutY="328.0" text="Endereço">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="endereco" layoutX="39.0" layoutY="348.0" prefHeight="36.0" prefWidth="583.0">
                <font>
                   <Font size="18.0" />
                </font>

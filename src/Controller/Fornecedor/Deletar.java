@@ -50,7 +50,7 @@ public class Deletar implements Initializable {
     @FXML
     private void deletar(ActionEvent event) throws IOException {
         FornecedorDAO c = new FornecedorDAO();
-        c.apagar(select.getSelectionModel().getSelectedIndex());        
+        c.apagar(Integer.parseInt(select.getSelectionModel().getSelectedItem().toString().split("-")[0]));        
         Stage stage; 
         Parent root;
         stage=(Stage) ((Node)event.getSource()).getScene().getWindow();   
@@ -63,16 +63,16 @@ public class Deletar implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> selectItems = select.getItems();
-        selectItems.add(0, "Selecione um cliente");
-        select.setValue("Selecione um cliente");
+        selectItems.add(0, "Selecione um fornecedor");
+        select.setValue("Selecione um fornecedor");
         FornecedorDAO c = new FornecedorDAO();
         ResultSet rc = c.all();
         try {
             while(rc.next()){
-                selectItems.add(rc.getInt("id"),rc.getString("nome"));
+                selectItems.add(rc.getInt("id")+"- "+rc.getString("nome"));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Controller.Cliente.Deletar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Controller.Fornecedor.Deletar.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }    

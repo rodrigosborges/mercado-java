@@ -1,8 +1,10 @@
+
 package Controller.Fornecedor;
 
-import DAO.ClienteDAO;
+import DAO.CategoriaDAO;
 import DAO.FornecedorDAO;
-import Model.Fornecedor;
+import DAO.ProdutoDAO;
+import Model.Produtos;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -25,21 +27,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author RODRIGO
- */
-public class Editar implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
+public class Listar implements Initializable {
+     
+    @FXML private Label nome;
+    @FXML private ChoiceBox select;  
+    @FXML private AnchorPane container;
     
-    @FXML private AnchorPane container;    
-    @FXML private ChoiceBox select;
-    @FXML private TextField nome;
-      
     @FXML
     private void voltar(ActionEvent event) throws IOException {
         Stage stage; 
@@ -52,7 +45,7 @@ public class Editar implements Initializable {
     }
     
     @FXML
-    private void editar(ActionEvent event) throws SQLException{
+    private void editar(ActionEvent event) throws IOException, SQLException {
         if(select.getSelectionModel().getSelectedIndex() > 0){
             FornecedorDAO c = new FornecedorDAO();
             ResultSet rc = c.get(Integer.parseInt(select.getSelectionModel().getSelectedItem().toString().split("-")[0]));
@@ -64,36 +57,21 @@ public class Editar implements Initializable {
         }
     }
     
-    @FXML
-    public void salvar(ActionEvent event) throws SQLException, IOException{
-        Fornecedor f = new Fornecedor(nome.getText());
-        FornecedorDAO c = new FornecedorDAO();
-        c.atualizar(f, select.getSelectionModel().getSelectedIndex());
-        Stage stage; 
-        Parent root;
-        stage=(Stage) ((Node)event.getSource()).getScene().getWindow();   
-        root = FXMLLoader.load(getClass().getResource("/View/Fornecedor/Index.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();       
-    }
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        container.setVisible(false);
+                
         ObservableList<String> selectItems = select.getItems();
-        selectItems.add(0, "Selecione um fornecedor");
+        selectItems.add("Selecione um fornecedor");
         select.setValue("Selecione um fornecedor");
-        FornecedorDAO c = new FornecedorDAO();
-        ResultSet rc = c.all();
+        FornecedorDAO p = new FornecedorDAO();
+        ResultSet pc = p.all();
         try {
-            while(rc.next()){
-                selectItems.add(rc.getInt("id")+"- "+rc.getString("nome"));
+            while(pc.next()){
+                selectItems.add(pc.getInt("id")+"- "+pc.getString("nome"));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Controller.Fornecedor.Editar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Controller.Produto.Editar.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }      
-    
+    } 
 }
