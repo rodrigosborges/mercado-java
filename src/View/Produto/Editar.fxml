@@ -7,10 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="640.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="Controller.Produto.Editar">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Produto.Editar">
    <children>
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="178.0" prefWidth="640.0">
+      <AnchorPane prefHeight="178.0" prefWidth="640.0">
          <children>
             <ChoiceBox fx:id="select" layoutX="112.0" layoutY="119.0" onAction="#editar" prefHeight="36.0" prefWidth="403.0" />
             <Label layoutX="281.0" layoutY="48.0" text="EDITAR">
@@ -21,7 +20,7 @@
             <Button layoutX="42.0" layoutY="38.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="container" layoutX="5.0" layoutY="181.0" minHeight="0.0" minWidth="0.0" prefHeight="482.0" prefWidth="640.0">
+      <AnchorPane fx:id="container" layoutY="178.0" minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="640.0">
          <children>
             <Label layoutX="64.0" layoutY="38.0" text="Nome do Produto">
                <font>
