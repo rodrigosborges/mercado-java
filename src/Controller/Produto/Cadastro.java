@@ -31,14 +31,15 @@ public class Cadastro implements Initializable {
   
     @FXML private TextField nome;
     @FXML private TextField marca;
-    @FXML private TextField validade;
     @FXML private TextField preco;
+    @FXML private ChoiceBox fornecedores;
+    @FXML private ChoiceBox categorias;
 
     
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException, IOException{
         
-        Produtos produto = new Produtos(nome.getText(), marca.getText(), validade.getText(), preco.getText());
+        Produtos produto = new Produtos(nome.getText(), marca.getText(), preco.getText(), fornecedores.getSelectionModel().getSelectedIndex(), categorias.getSelectionModel().getSelectedIndex());
         
         ProdutoDAO dao = new ProdutoDAO();
         
@@ -69,32 +70,32 @@ public class Cadastro implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        
-//        ObservableList<String> categoriaItems = categorias.getItems();
-//        categoriaItems.add(0, "Selecione uma opção");
-//        categorias.setValue("Selecione uma opção");
-//        CategoriaDAO c = new CategoriaDAO();
-//        ResultSet rc = c.all();
-//        try {
-//            while(rc.next()){
-//                categoriaItems.add(rc.getString("nome"));
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//        ObservableList<String> fornecedorItems = fornecedores.getItems();
-//        fornecedorItems.add(0, "Selecione uma opção");
-//        fornecedores.setValue("Selecione uma opção");
-//        FornecedorDAO f = new FornecedorDAO();
-//        ResultSet rf = f.all();
-//        try {
-//            while(rf.next()){
-//                fornecedorItems.add(rf.getString("nome"));
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        
+        ObservableList<String> categoriaItems = categorias.getItems();
+        categoriaItems.add(0, "Selecione uma opção");
+        categorias.setValue("Selecione uma opção");
+        CategoriaDAO c = new CategoriaDAO();
+        ResultSet rc = c.all();
+        try {
+            while(rc.next()){
+                categoriaItems.add(rc.getString("nome"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ObservableList<String> fornecedorItems = fornecedores.getItems();
+        fornecedorItems.add(0, "Selecione uma opção");
+        fornecedores.setValue("Selecione uma opção");
+        FornecedorDAO f = new FornecedorDAO();
+        ResultSet rf = f.all();
+        try {
+            while(rf.next()){
+                fornecedorItems.add(rf.getString("nome"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
     
 }

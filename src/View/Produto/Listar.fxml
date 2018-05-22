@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Produto.Listar">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="178.0" prefWidth="640.0">
+         <children>
+            <ChoiceBox fx:id="select" layoutX="112.0" layoutY="119.0" onAction="#editar" prefHeight="36.0" prefWidth="403.0" />
+            <Label layoutX="281.0" layoutY="48.0" text="LISTAR">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button layoutX="42.0" layoutY="38.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="container" layoutX="5.0" layoutY="181.0" minHeight="0.0" minWidth="0.0" prefHeight="482.0" prefWidth="640.0">
+         <children>
+            <Label layoutX="64.0" layoutY="38.0" text="Nome do Produto">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="64.0" layoutY="103.0" text="Marca do Produto">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="65.0" layoutY="171.0" text="Preço do Produto">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="65.0" layoutY="233.0" text="Categoria">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="65.0" layoutY="309.0" text="Fornecedor">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="nome" layoutX="65.0" layoutY="64.0" prefHeight="30.0" prefWidth="481.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="marca" layoutX="65.0" layoutY="131.0" prefHeight="30.0" prefWidth="481.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="preco" layoutX="65.0" layoutY="191.0" prefHeight="30.0" prefWidth="481.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="categoria" layoutX="65.0" layoutY="261.0" prefHeight="30.0" prefWidth="481.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="fornecedor" layoutX="65.0" layoutY="329.0" prefHeight="30.0" prefWidth="481.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

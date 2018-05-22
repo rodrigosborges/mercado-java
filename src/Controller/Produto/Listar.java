@@ -27,14 +27,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class Editar implements Initializable {
+public class Listar implements Initializable {
      
-    @FXML private TextField nome;
-    @FXML private TextField marca;
-    @FXML private TextField preco;
+    @FXML private Label nome;
+    @FXML private Label marca;
+    @FXML private Label preco;
     @FXML private ChoiceBox select;
-    @FXML private ChoiceBox fornecedores;
-    @FXML private ChoiceBox categorias;    
+    @FXML private Label fornecedor;
+    @FXML private Label categoria;    
     @FXML private AnchorPane container;
     
     @FXML
@@ -57,61 +57,16 @@ public class Editar implements Initializable {
             nome.setText(rc.getString("nome"));
             marca.setText(rc.getString("marca"));
             preco.setText(rc.getString("preco"));
-            fornecedores.getSelectionModel().select(rc.getInt("fornecedor_id"));
-            categorias.getSelectionModel().select(rc.getInt("categoria_id"));
+            fornecedor.setText(rc.getString("f_nome"));
+            categoria.setText(rc.getString("c_nome"));
             container.setVisible(true);
         }else{
             container.setVisible(false);
         }
     }
     
-    @FXML
-    private void handleButtonAction(ActionEvent event) throws SQLException, IOException{
-        Produtos produto = new Produtos(nome.getText(), marca.getText(), preco.getText(), fornecedores.getSelectionModel().getSelectedIndex(), categorias.getSelectionModel().getSelectedIndex());
-     
-        ProdutoDAO dao = new ProdutoDAO();
-        
-        if(dao.atualizar(select.getSelectionModel().getSelectedIndex(),produto)){
-            Stage stage; 
-            Parent root;
-            stage=(Stage) ((Node)event.getSource()).getScene().getWindow();   
-            root = FXMLLoader.load(getClass().getResource("/View/Produto/Index.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();       
-        }else{
-            
-        }
-    }
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-                
-        ObservableList<String> categoriaItems = categorias.getItems();
-        categoriaItems.add(0, "Selecione uma opção");
-        categorias.setValue("Selecione uma opção");
-        CategoriaDAO c = new CategoriaDAO();
-        ResultSet rc = c.all();
-        try {
-            while(rc.next()){
-                categoriaItems.add(rc.getString("nome"));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        ObservableList<String> fornecedorItems = fornecedores.getItems();
-        fornecedorItems.add(0, "Selecione uma opção");
-        fornecedores.setValue("Selecione uma opção");
-        FornecedorDAO f = new FornecedorDAO();
-        ResultSet rf = f.all();
-        try {
-            while(rf.next()){
-                fornecedorItems.add(rf.getString("nome"));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
                 
         ObservableList<String> selectItems = select.getItems();
         selectItems.add(0, "Selecione um produto");

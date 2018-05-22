@@ -6,15 +6,17 @@ public class Produtos {
     private int id;
     private String nome;
     private String marca;
-    private String validade;
     private String preco;
+    private int fornecedores;
+    private int categorias;
     
     
-    public Produtos(String nome, String marca, String validade,String preco){
+    public Produtos(String nome, String marca, String preco, int fornecedores, int categorias){
         this.nome = nome;
         this.marca = marca;
         this.preco = preco;
-        this.validade = validade;
+        this.fornecedores = fornecedores;
+        this.categorias = categorias;
     }
     
     public int getId() {
@@ -41,20 +43,28 @@ public class Produtos {
         this.marca = marca;
     }
 
-    public String getValidade() {
-        return validade;
-    }
-
-    public void setValidade(String validade) {
-        this.validade = validade;
-    }
-
     public String getPreco() {
         return preco;
     }
 
     public void setPreco(String preco) {
         this.preco = preco;
+    }
+
+    public int getFornecedores() {
+        return fornecedores;
+    }
+
+    public void setFornecedores(int fornecedores) {
+        this.fornecedores = fornecedores;
+    }
+
+    public int getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(int categorias) {
+        this.categorias = categorias;
     }
     
 }

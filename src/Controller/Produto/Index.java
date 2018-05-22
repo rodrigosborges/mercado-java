@@ -37,8 +37,10 @@ public class Index implements Initializable {
             root = FXMLLoader.load(getClass().getResource("/View/Produto/Cadastro.fxml"));
         }else if(event.getSource() == btn2){
             root = FXMLLoader.load(getClass().getResource("/View/Produto/Editar.fxml"));
-        }else{            
+        }else if(event.getSource() == btn3){            
             root = FXMLLoader.load(getClass().getResource("/View/Produto/Deletar.fxml"));            
+        }else{
+            root = FXMLLoader.load(getClass().getResource("/View/Produto/Listar.fxml"));  
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
