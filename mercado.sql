@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `mercado` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `mercado`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: mercado
@@ -52,7 +50,7 @@ CREATE TABLE `clientes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cpf` char(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
-  `dt_nasc` varchar(20) NOT NULL,
+  `dt_nasc` date NOT NULL,
   `contato_id` int(11) DEFAULT NULL,
   `endereco_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -60,7 +58,7 @@ CREATE TABLE `clientes` (
   KEY `FK_cliente_endereco` (`endereco_id`),
   CONSTRAINT `FK_cliente_contato` FOREIGN KEY (`contato_id`) REFERENCES `contatos` (`id`),
   CONSTRAINT `FK_cliente_endereco` FOREIGN KEY (`endereco_id`) REFERENCES `enderecos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,7 +137,7 @@ CREATE TABLE `contatos` (
   `fixo` varchar(20) NOT NULL,
   `celular` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,7 +215,7 @@ CREATE TABLE `fornecedores` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(60) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -226,7 +224,7 @@ CREATE TABLE `fornecedores` (
 
 LOCK TABLES `fornecedores` WRITE;
 /*!40000 ALTER TABLE `fornecedores` DISABLE KEYS */;
-INSERT INTO `fornecedores` VALUES (1,'Sadia'),(2,'Perdigão'),(3,'Nestle'),(4,'Garoto'),(5,'Outro');
+INSERT INTO `fornecedores` VALUES (1,'Sadia'),(2,'Perdigão'),(3,'Nestle'),(5,'Outro');
 /*!40000 ALTER TABLE `fornecedores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -249,7 +247,7 @@ CREATE TABLE `produtos` (
   KEY `FK_produto_fornecedor` (`fornecedor_id`),
   CONSTRAINT `FK_produto_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`),
   CONSTRAINT `FK_produto_fornecedor` FOREIGN KEY (`fornecedor_id`) REFERENCES `fornecedores` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -270,4 +268,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-22 16:51:32
+-- Dump completed on 2018-06-06 17:12:02
