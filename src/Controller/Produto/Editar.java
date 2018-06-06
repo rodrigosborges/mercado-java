@@ -68,7 +68,7 @@ public class Editar implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException, IOException{
         try{
-            Produtos produto = new Produtos(nome.getText(), marca.getText(), preco.getText(), fornecedores.getSelectionModel().getSelectedIndex(), categorias.getSelectionModel().getSelectedIndex());
+            Produtos produto = new Produtos(nome.getText(), marca.getText(), Double.parseDouble(preco.getText().replace(',','.')), fornecedores.getSelectionModel().getSelectedIndex(), categorias.getSelectionModel().getSelectedIndex());
 
             ProdutoDAO dao = new ProdutoDAO();
 
@@ -79,7 +79,14 @@ public class Editar implements Initializable {
                 root = FXMLLoader.load(getClass().getResource("/View/Produto/Index.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
-                stage.show();       
+                stage.show();
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/Index/Sucesso.fxml"));
+                Scene cena = new Scene(fxmlLoader.load());
+                Stage estagio = new Stage();
+                estagio.setTitle("SUCESSO");
+                estagio.setScene(cena);
+                estagio.show();
             }
         }catch(Exception e){         
             FXMLLoader fxmlLoader = new FXMLLoader();

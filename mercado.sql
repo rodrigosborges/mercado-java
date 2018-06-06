@@ -1,8 +1,10 @@
+CREATE DATABASE  IF NOT EXISTS `mercado` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `mercado`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: mercado
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.21-MariaDB
+-- Server version	5.7.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -240,7 +242,7 @@ CREATE TABLE `produtos` (
   `nome` varchar(60) NOT NULL,
   `marca` varchar(60) NOT NULL,
   `categoria_id` int(11) NOT NULL,
-  `preco` varchar(10) NOT NULL,
+  `preco` double NOT NULL,
   `fornecedor_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_produto_categoria` (`categoria_id`),
@@ -268,4 +270,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-06 17:12:02
+-- Dump completed on 2018-06-06 19:49:37

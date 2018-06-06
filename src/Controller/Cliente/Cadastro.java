@@ -55,6 +55,13 @@ public class Cadastro implements Initializable {
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show(); 
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/Index/Sucesso.fxml"));
+                Scene cena = new Scene(fxmlLoader.load());
+                Stage estagio = new Stage();
+                estagio.setTitle("SUCESSO");
+                estagio.setScene(cena);
+                estagio.show();
             }
         }catch(Exception e){         
             FXMLLoader fxmlLoader = new FXMLLoader();

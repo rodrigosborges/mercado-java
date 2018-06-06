@@ -34,7 +34,7 @@ public class ProdutoDAO {
     public boolean inserir(Produtos produtos) throws SQLException{
         
         //criar SQL com variáveis
-        String sql = "insert into produtos(nome, marca, preco, fornecedor_id, categoria_id) values('"+produtos.getNome()+"','"+produtos.getMarca()+"','"+produtos.getPreco()+"','"+produtos.getFornecedores()+"','"+produtos.getCategorias()+"');";
+        String sql = "insert into produtos(nome, marca, preco, fornecedor_id, categoria_id) values('"+produtos.getNome()+"','"+produtos.getMarca()+"','"+produtos.getPreco().toString()+"','"+produtos.getFornecedores()+"','"+produtos.getCategorias()+"');";
         
         //conectar com BD
         conexao.conectar();
@@ -49,7 +49,7 @@ public class ProdutoDAO {
     public boolean atualizar(int id, Produtos produtos) throws SQLException{
 
         //criar SQL com variáveis
-        String sql = "update produtos set nome = '"+produtos.getNome()+"', marca ='"+produtos.getMarca()+"',preco='"+produtos.getPreco()+"',fornecedor_id='"+produtos.getFornecedores()+"',categoria_id='"+produtos.getCategorias()+"' WHERE id = '"+id+"';";
+        String sql = "update produtos set nome = '"+produtos.getNome()+"', marca ='"+produtos.getMarca()+"',preco='"+produtos.getPreco().toString()+"',fornecedor_id='"+produtos.getFornecedores()+"',categoria_id='"+produtos.getCategorias()+"' WHERE id = '"+id+"';";
         
         //conectar com BD
         conexao.conectar();

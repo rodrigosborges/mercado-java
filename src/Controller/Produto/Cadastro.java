@@ -39,7 +39,7 @@ public class Cadastro implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException, IOException{
         try{
-            Produtos produto = new Produtos(nome.getText(), marca.getText(), preco.getText(), Integer.parseInt(fornecedores.getSelectionModel().getSelectedItem().toString().split("-")[0]), Integer.parseInt(categorias.getSelectionModel().getSelectedItem().toString().split("-")[0]));
+            Produtos produto = new Produtos(nome.getText(), marca.getText(), Double.parseDouble(preco.getText().replace(',','.')), Integer.parseInt(fornecedores.getSelectionModel().getSelectedItem().toString().split("-")[0]), Integer.parseInt(categorias.getSelectionModel().getSelectedItem().toString().split("-")[0]));
 
             ProdutoDAO dao = new ProdutoDAO();
 
@@ -50,7 +50,14 @@ public class Cadastro implements Initializable {
                 root = FXMLLoader.load(getClass().getResource("/View/Produto/Index.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
-                stage.show();       
+                stage.show(); 
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/Index/Sucesso.fxml"));
+                Scene cena = new Scene(fxmlLoader.load());
+                Stage estagio = new Stage();
+                estagio.setTitle("SUCESSO");
+                estagio.setScene(cena);
+                estagio.show();
             }   
         }catch(Exception e){         
             FXMLLoader fxmlLoader = new FXMLLoader();
