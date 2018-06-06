@@ -45,13 +45,18 @@ public class ClienteDAO {
         
         //criar SQL com variáveis
         String sql = "insert into clientes(nome, cpf, dt_nasc, endereco_id, contato_id) values('"+cliente.getNome()+"','"+
-                cliente.getCpf()+"','"+cliente.getNascimento()+"','"+endereco_id+"','"+contato_id+"');";
+                cliente.getCpf()+"','"+cliente.getNascimento().toString()+"','"+endereco_id+"','"+contato_id+"');";
         
         //conectar com BD
         conexao.conectar();
         
         //enviar SQL para o BD
         boolean b = conexao.executarComandosSQL(sql);
+        
+        if(!b){
+            daocontato.apagar(contato_id);
+            daoendereco.apagar(endereco_id);
+        }
         
         //retornar mensagem de erro ou sucesso
         return b;

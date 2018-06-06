@@ -51,4 +51,18 @@ public class EnderecoDAO {
         //retornar mensagem de erro ou sucesso
         return b;
     }
+    
+    public boolean apagar(int id){
+        //criar SQL com variáveis
+        String sql = "delete from enderecos where id = '"+id+"';";
+        
+        //conectar com BD
+        conexao.conectar();
+        
+        //enviar SQL para o BD
+        boolean b = conexao.executarComandosSQL(sql);
+        
+        //retornar mensagem de erro ou sucesso
+        return b;
+    }
 }

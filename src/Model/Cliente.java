@@ -1,15 +1,17 @@
 package Model;
 
+import java.util.Date;
+
 public class Cliente {
     
     private int id;
     private String nome;
     private String cpf;
-    private String nascimento;
+    private Date nascimento;
     private int contato_id;
     private int endereco_id;
 
-    public Cliente(String nome, String cpf, String nascimento) {
+    public Cliente(String nome, String cpf, Date nascimento) {
         this.nome = nome;
         this.cpf = cpf;
         this.nascimento = nascimento;
@@ -39,11 +41,11 @@ public class Cliente {
         this.cpf = cpf;
     }    
 
-    public String getNascimento() {
+    public Date getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(String nascimento) {
+    public void setNascimento(Date nascimento) {
         this.nascimento = nascimento;
     }
 

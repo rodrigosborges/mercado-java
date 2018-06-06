@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -40,7 +43,7 @@ public class Editar implements Initializable {
     //dados pessoais
     @FXML private TextField nome;
     @FXML private TextField cpf;
-    @FXML private TextField nascimento;
+    @FXML private DatePicker nascimento;
     
     //endereco
     @FXML private TextField rua;
@@ -82,7 +85,7 @@ public class Editar implements Initializable {
             this.endereco_id = rc.getInt("endereco_id");
             nome.setText(rc.getString("nome"));
             cpf.setText(rc.getString("cpf"));
-            nascimento.setText(rc.getString("dt_nasc"));
+            nascimento.setValue(LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(rc.getDate("dt_nasc"))));
             rua.setText(rc.getString("rua"));
             numero.setText(rc.getString("numero"));
             bairro.setText(rc.getString("bairro"));
@@ -101,23 +104,31 @@ public class Editar implements Initializable {
     
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException, IOException{
-        Cliente cliente = new Cliente(nome.getText(), cpf.getText(), nascimento.getText());
-        cliente.setContato_id(this.contato_id);
-        cliente.setEndereco_id(this.endereco_id);
-        Endereco endereco = new Endereco(rua.getText(), Integer.parseInt(numero.getText()), bairro.getText(), cidade.getText(), UF.getText(), cep.getText());
-        Contato contato = new Contato(fixo.getText(), celular.getText(), email.getText());
-        ClienteDAO dao = new ClienteDAO();
-        
-        if(dao.atualizar(select.getSelectionModel().getSelectedIndex(),cliente, endereco, contato)){
-            Stage stage; 
-            Parent root;
-            stage=(Stage) ((Node)event.getSource()).getScene().getWindow();   
-            root = FXMLLoader.load(getClass().getResource("/View/Cliente/Index.fxml"));
-            Scene scene = new Scene(root);
+        try{
+            Cliente cliente = new Cliente(nome.getText(), cpf.getText(), java.sql.Date.valueOf(nascimento.getValue()));
+            cliente.setContato_id(this.contato_id);
+            cliente.setEndereco_id(this.endereco_id);
+            Endereco endereco = new Endereco(rua.getText(), Integer.parseInt(numero.getText()), bairro.getText(), cidade.getText(), UF.getText(), cep.getText());
+            Contato contato = new Contato(fixo.getText(), celular.getText(), email.getText());
+            ClienteDAO dao = new ClienteDAO();
+
+            if(dao.atualizar(select.getSelectionModel().getSelectedIndex(),cliente, endereco, contato)){
+                Stage stage; 
+                Parent root;
+                stage=(Stage) ((Node)event.getSource()).getScene().getWindow();   
+                root = FXMLLoader.load(getClass().getResource("/View/Cliente/Index.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show(); 
+            }
+        }catch(Exception e){         
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/Index/Error.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setTitle("ERRO");
             stage.setScene(scene);
-            stage.show();       
-        }else{
-            
+            stage.show();
         }
     }
     

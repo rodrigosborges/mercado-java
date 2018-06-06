@@ -38,21 +38,28 @@ public class Cadastro implements Initializable {
     
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException, IOException{
-        
-        Produtos produto = new Produtos(nome.getText(), marca.getText(), preco.getText(), Integer.parseInt(fornecedores.getSelectionModel().getSelectedItem().toString().split("-")[0]), Integer.parseInt(categorias.getSelectionModel().getSelectedItem().toString().split("-")[0]));
-        
-        ProdutoDAO dao = new ProdutoDAO();
-        
-        if(dao.inserir(produto)){
-            Stage stage; 
-            Parent root;
-            stage=(Stage) ((Node)event.getSource()).getScene().getWindow();   
-            root = FXMLLoader.load(getClass().getResource("/View/Produto/Index.fxml"));
-            Scene scene = new Scene(root);
+        try{
+            Produtos produto = new Produtos(nome.getText(), marca.getText(), preco.getText(), Integer.parseInt(fornecedores.getSelectionModel().getSelectedItem().toString().split("-")[0]), Integer.parseInt(categorias.getSelectionModel().getSelectedItem().toString().split("-")[0]));
+
+            ProdutoDAO dao = new ProdutoDAO();
+
+            if(dao.inserir(produto)){
+                Stage stage; 
+                Parent root;
+                stage=(Stage) ((Node)event.getSource()).getScene().getWindow();   
+                root = FXMLLoader.load(getClass().getResource("/View/Produto/Index.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();       
+            }   
+        }catch(Exception e){         
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/Index/Error.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setTitle("ERRO");
             stage.setScene(scene);
-            stage.show();       
-        }else{
-            
+            stage.show();
         }
         
    }

@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -23,7 +24,7 @@ public class Cadastro implements Initializable {
     //dados pessoais
     @FXML private TextField nome;
     @FXML private TextField cpf;
-    @FXML private TextField nascimento;
+    @FXML private DatePicker nascimento;
     
     //endereco
     @FXML private TextField rua;
@@ -40,24 +41,32 @@ public class Cadastro implements Initializable {
     
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException, IOException{
-        Cliente cliente = new Cliente(nome.getText(), cpf.getText(), nascimento.getText());
-        Endereco endereco = new Endereco(rua.getText(), Integer.parseInt(numero.getText()), bairro.getText(), cidade.getText(), UF.getText(), cep.getText());
-        Contato contato = new Contato(fixo.getText(), celular.getText(), email.getText());
-        ClienteDAO dao = new ClienteDAO();
-        
-        if(dao.inserir(cliente, endereco, contato)){
-            Stage stage; 
-            Parent root;
-            stage=(Stage) ((Node)event.getSource()).getScene().getWindow();   
-            root = FXMLLoader.load(getClass().getResource("/View/Cliente/Index.fxml"));
-            Scene scene = new Scene(root);
+        try{
+            Cliente cliente = new Cliente(nome.getText(), cpf.getText(), java.sql.Date.valueOf(nascimento.getValue()));
+            Endereco endereco = new Endereco(rua.getText(), Integer.parseInt(numero.getText()), bairro.getText(), cidade.getText(), UF.getText(), cep.getText());
+            Contato contato = new Contato(fixo.getText(), celular.getText(), email.getText());
+            ClienteDAO dao = new ClienteDAO();
+
+            if(dao.inserir(cliente, endereco, contato)){
+                Stage stage; 
+                Parent root;
+                stage=(Stage) ((Node)event.getSource()).getScene().getWindow();   
+                root = FXMLLoader.load(getClass().getResource("/View/Cliente/Index.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show(); 
+            }
+        }catch(Exception e){         
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/Index/Error.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setTitle("ERRO");
             stage.setScene(scene);
-            stage.show();       
-        }else{
-            
+            stage.show();
         }
     }
-    
+
     @FXML
     private void voltar(ActionEvent event) throws IOException {
         Stage stage; 
