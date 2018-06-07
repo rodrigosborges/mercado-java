@@ -71,7 +71,7 @@ public class ClienteDAO {
         ResultSet re = daoendereco.atualizar(cliente.getEndereco_id(),endereco);
         
         //criar SQL com variáveis
-        String sql = "update clientes set nome = '"+cliente.getNome()+"',cpf = '"+cliente.getCpf()+"',dt_nasc = '"+cliente.getNascimento()+
+        String sql = "update clientes set nome = '"+cliente.getNome()+"',cpf = '"+cliente.getCpf()+"',dt_nasc = '"+cliente.getNascimento().toString()+
                 "' WHERE id = "+id+";";
         
         //conectar com BD
@@ -100,15 +100,24 @@ public class ClienteDAO {
         return b;        
     }
     
-    public boolean apagar(int id){
+    public boolean apagar(int id) throws SQLException{
         //criar SQL com variáveis
         String sql = "delete from clientes where id = '"+id+"';";
         
+        ResultSet rs = this.get(id);
+        rs.next();
+        ContatoDAO ct = new ContatoDAO();
+        EnderecoDAO ed = new EnderecoDAO();
+        
+
         //conectar com BD
         conexao.conectar();
         
         //enviar SQL para o BD
         boolean b = conexao.executarComandosSQL(sql);
+        
+        ct.apagar(rs.getInt("contato_id"));
+        ed.apagar(rs.getInt("endereco_id"));
         
         //retornar mensagem de erro ou sucesso
         return b;

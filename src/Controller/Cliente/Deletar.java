@@ -47,7 +47,7 @@ public class Deletar implements Initializable {
     }
         
     @FXML
-    private void deletar(ActionEvent event) throws IOException {
+    private void deletar(ActionEvent event) throws IOException, SQLException {
         ClienteDAO c = new ClienteDAO();
         c.apagar(Integer.parseInt(select.getSelectionModel().getSelectedItem().toString().split("-")[0]));        
         Stage stage; 
